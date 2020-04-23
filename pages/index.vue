@@ -1,6 +1,18 @@
 <template>
-  <div class="container"></div>
+  <div>
+    <Graph />
+  </div>
 </template>
+
+<script>
+import Graph from '@/components/graph/Base'
+
+export default {
+  components: {
+    Graph
+  }
+}
+</script>
 
 <style>
 /* Sample `apply` at-rules with Tailwind CSS
