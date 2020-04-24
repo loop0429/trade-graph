@@ -1,3 +1,6 @@
+require('dotenv').config()
+const { API_KEY } = process.env
+
 export default {
   mode: 'spa',
   /*
@@ -57,5 +60,8 @@ export default {
      ** You can extend webpack config here
      */
     extend(config, ctx) {}
+  },
+  env: {
+    API_KEY
   }
 }

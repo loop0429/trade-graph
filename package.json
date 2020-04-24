@@ -20,8 +20,12 @@
     }
   },
   "dependencies": {
+    "@firebase/app": "^0.6.2",
+    "@firebase/auth": "^0.14.4",
+    "@firebase/firestore": "^1.14.2",
     "@nuxtjs/dotenv": "^1.4.0",
     "apexcharts": "^3.18.1",
+    "date-utils": "^1.2.21",
     "nuxt": "^2.0.0",
     "vue-apexcharts": "^1.5.3"
   },
