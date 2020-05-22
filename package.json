@@ -1,45 +1,26 @@
 {
-  "name": "trade-graph",
+  "name": "with-redux",
   "version": "1.0.0",
-  "description": "My superb Nuxt.js project",
-  "author": "永岡史哉",
-  "private": true,
   "scripts": {
-    "dev": "nuxt",
-    "build": "nuxt build",
-    "start": "nuxt start",
-    "generate": "nuxt generate",
-    "lint": "eslint --ext .js,.vue --ignore-path .gitignore ."
-  },
-  "lint-staged": {
-    "*.{js,vue}": "yarn lint"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
   },
   "dependencies": {
-    "@firebase/app": "^0.6.2",
-    "@firebase/auth": "^0.14.4",
-    "@firebase/firestore": "^1.14.2",
-    "@nuxtjs/dotenv": "^1.4.0",
-    "apexcharts": "^3.18.1",
+    "@firebase/app": "^0.6.4",
+    "@firebase/auth": "^0.14.6",
+    "@firebase/firestore": "^1.14.5",
     "date-utils": "^1.2.21",
-    "nuxt": "^2.0.0",
-    "vue-apexcharts": "^1.5.3"
+    "next": "latest",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-redux": "^7.1.0",
+    "recharts": "^1.8.5",
+    "redux": "^3.6.0",
+    "redux-devtools-extension": "^2.13.2"
   },
+  "license": "ISC",
   "devDependencies": {
-    "@nuxtjs/eslint-config": "^2.0.0",
-    "@nuxtjs/eslint-module": "^1.0.0",
-    "@nuxtjs/tailwindcss": "^1.0.0",
-    "babel-eslint": "^10.0.1",
-    "eslint": "^6.1.0",
-    "eslint-config-prettier": "^6.10.0",
-    "eslint-plugin-nuxt": ">=0.4.2",
-    "eslint-plugin-prettier": "^3.1.2",
-    "husky": "^4.0.0",
-    "lint-staged": "^10.0.0",
-    "prettier": "^1.19.1"
+    "dotenv": "^8.2.0"
   }
 }
