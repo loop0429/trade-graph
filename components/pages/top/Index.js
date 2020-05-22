@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react'
 import {
   ResponsiveContainer,
   AreaChart,
@@ -8,42 +7,9 @@ import {
   CartesianGrid,
   Tooltip,
 } from 'recharts'
-require('date-utils')
 
-import firebase from '../../../utils/firebase'
-
-const Index = () => {
-  const [graphData, setGraphData] = useState(null)
-
-  useEffect(() => {
-    const db = firebase.firestore()
-
-    const data = []
-
-    async function fetchData() {
-      await db
-        .collection('trade')
-        .orderBy('date')
-        .limit(30)
-        .get()
-        .then(querySnapshot => {
-          querySnapshot.forEach(doc => {
-            const fbData = doc.data()
-            const payload = {
-              balance: fbData.balance,
-              date: fbData.date.toDate().toFormat('MM/DD')
-            }
-
-            data.push(payload)
-            console.log(data)
-          })
-        })
-
-      setGraphData(data)
-    }
-
-    fetchData()
-  }, [setGraphData])
+const Index = (props) => {
+  const {graphData} = props
 
   return (
     <ResponsiveContainer width="100%" height={300}>

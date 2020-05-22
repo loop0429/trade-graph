@@ -1,5 +1,5 @@
-import firebase from 'firebase/app'
-import 'firebase/firestore'
+import firebase from '@firebase/app'
+import '@firebase/firestore'
 
 const clientCredentials = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -8,8 +8,10 @@ const clientCredentials = {
   storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
 }
 
-if (typeof window !== 'undefined' && !firebase.apps.length) {
+if (!firebase.apps.length) {
   firebase.initializeApp(clientCredentials)
 }
 
-export default firebase
+const db = firebase.firestore()
+
+export default db
