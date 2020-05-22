@@ -10,6 +10,8 @@ import {
 } from 'recharts'
 
 const Index = () => {
+  console.log(process.env.FIREBASE_AUTH_DOMAIN)
+
   const graphData = [
     {
       date: '05/22',
