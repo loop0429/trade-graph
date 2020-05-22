@@ -1,4 +1,4 @@
-import react from 'react'
+import { useState, useEffect } from 'react'
 import {
   ResponsiveContainer,
   AreaChart,
@@ -8,40 +8,46 @@ import {
   CartesianGrid,
   Tooltip,
 } from 'recharts'
+require('date-utils')
+
+import firebase from '../../../utils/firebase'
 
 const Index = () => {
-  console.log(process.env.FIREBASE_AUTH_DOMAIN)
+  const [graphData, setGraphData] = useState(null)
 
-  const graphData = [
-    {
-      date: '05/22',
-      balance: 500000
-    },
-    {
-      date: '05/23',
-      balance: 400000
-    },
-    {
-      date: '05/28',
-      balance: 800000
-    },
-    {
-      date: '05/29',
-      balance: 200000
-    },
-    {
-      date: '05/30',
-      balance: 5000000
-    },
-    {
-      date: '05/31',
-      balance: 500000
-    },
-  ]
+  useEffect(() => {
+    const db = firebase.firestore()
+
+    const data = []
+
+    async function fetchData() {
+      await db
+        .collection('trade')
+        .orderBy('date')
+        .limit(30)
+        .get()
+        .then(querySnapshot => {
+          querySnapshot.forEach(doc => {
+            const fbData = doc.data()
+            const payload = {
+              balance: fbData.balance,
+              date: fbData.date.toDate().toFormat('MM/DD')
+            }
+
+            data.push(payload)
+            console.log(data)
+          })
+        })
+
+      setGraphData(data)
+    }
+
+    fetchData()
+  }, [setGraphData])
 
   return (
     <ResponsiveContainer width="100%" height={300}>
-      <AreaChart data={graphData} margin={{ top: -1 }}>
+      <AreaChart data={graphData}>
         <CartesianGrid vertical={false} stroke="#eee" />
         <XAxis
           dataKey="date"
@@ -50,6 +56,8 @@ const Index = () => {
           tickMargin={13}
         />
         <YAxis
+          type="number"
+          domain={['auto', 'auto']}
           padding={{ top: 15, bottom: 0 }}
           tick={{ fontSize: 10 }}
           tickSize={0}
