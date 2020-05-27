@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import {
   ResponsiveContainer,
   AreaChart,
@@ -7,13 +8,25 @@ import {
   CartesianGrid,
   Tooltip,
 } from 'recharts'
+require('date-utils')
 
 const Index = (props) => {
-  const {graphData} = props
+  const { graphData } = props
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+    const list = graphData.map(element => {
+      return {
+        balance: element.balance,
+        date: element.date.toDate().toFormat('MM/DD')
+      }
+    })
+    setData(list.reverse())
+  }, [graphData]);
 
   return (
     <ResponsiveContainer width="100%" height={300}>
-      <AreaChart data={graphData}>
+      <AreaChart data={data}>
         <CartesianGrid vertical={false} stroke="#eee" />
         <XAxis
           dataKey="date"
